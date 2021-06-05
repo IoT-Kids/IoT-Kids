@@ -1,5 +1,4 @@
-﻿using IoT_Kids.AssistingModels;
-using IoT_Kids.Data;
+﻿using IoT_Kids.Data;
 using IoT_Kids.Models;
 using IoT_Kids.Repositories.IRepositories.IMembers;
 using IoT_Kids.Repositories.IRepositories.IMembershipPlans;
@@ -7,6 +6,7 @@ using IoT_Kids.Repositories.IRepositories.IMembershipTrans;
 using IoT_Kids.Repositories.IRepositories.IUsers;
 using IoT_Kids.Repositories.IRepositories.Payments;
 using IoT_Kids.StaticDetails;
+using IoT_Kids.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -137,59 +137,64 @@ namespace IoT_Kids.Repositories.MembershipTrans
 
             var Transaction =  _db.Database.BeginTransaction();
             try
-            {   
-                // Get user obj
-                var UserObj = await _userRepo.GetUserbyId(UserMember.UserId);
-
-                // Getting membership plan
-                var MemPlanObj = await _MemPlanRepo.GetPlanbyId(UserMember.MembershipPlanId);
-
-                if (UserObj == null || MemPlanObj == null)
-                {
-                    return false;
-                }
+            {
 
                 // update user membership
                 // but first if it exists 
                 var MemberObj = await _memberRepo.GetMemberByUserId(UserMember.UserId);
 
+                // Getting membership plan
+                var MemPlanObj = await _MemPlanRepo.GetPlanbyId(UserMember.MembershipPlanId);
+
+                if (MemberObj == null || MemPlanObj == null)
+                {
+                    return false;
+                }
+
+                // Get user obj
+                //var UserObj = await _userRepo.GetUserbyId(UserMember.UserId);
+
+
+
+
+
                 // if the user has no membership(a user whos not a customer yet for whatever reason)
                 //, now create a new membership for the user
                 // otherwise just get the user's membership
-                if(MemberObj == null)
-                {
-                    // Create member record
-                    Member NewMember = new Member()
-                    {
-                        UserId = UserMember.UserId,
-                        MembershipPlanId = UserMember.MembershipPlanId,
-                        StartDateTime = DateTime.Now,
-                        CreatedDateTime = DateTime.Now,
-                        Status = SD.ActiveMember
-                    };
+                //if (MemberObj == null)
+                //{
+                //    // Create member record
+                //    Member NewMember = new Member()
+                //    {
+                //        UserId = UserMember.UserId,
+                //        MembershipPlanId = UserMember.MembershipPlanId,
+                //        StartDateTime = DateTime.Now,
+                //        CreatedDateTime = DateTime.Now,
+                //        Status = SD.ActiveMember
+                //    };
 
-                    // If limited duration set for the selected plan, then we need to get the access period
-                    if (MemPlanObj.HasLimitedDuration)
-                    {
-                        NewMember.ExpireDateTime = NewMember.StartDateTime.AddDays(MemPlanObj.Period);
-                    }
-                    // Create member record
-                    await _memberRepo.CreateMember(NewMember);
-                }
-                // if (most of the cases) member exists for the user, 
-                //then update status, planId and start and expire date
-                else
-                {
-                    // where is status??
-                    MemberObj.MembershipPlanId = UserMember.MembershipPlanId;
-                    MemberObj.StartDateTime = DateTime.Now;
-                    MemberObj.Status = SD.ActiveMember;
-                    if (MemPlanObj.HasLimitedDuration)
-                    {
-                        MemberObj.ExpireDateTime = MemberObj.StartDateTime.AddDays(MemPlanObj.Period);
-                    }
-                    await _memberRepo.UpdateMember(MemberObj);
-                }
+                //    // If limited duration set for the selected plan, then we need to get the access period
+                //    if (MemPlanObj.HasLimitedDuration)
+                //    {
+                //        NewMember.ExpireDateTime = NewMember.StartDateTime.AddDays(MemPlanObj.Period);
+                //    }
+                //    // Create member record
+                //    await _memberRepo.CreateMember(NewMember);
+                //}
+                //// if (most of the cases) member exists for the user, 
+                ////then update status, planId and start and expire date
+                //else
+                //{
+                //    // where is status??
+                //    MemberObj.MembershipPlanId = UserMember.MembershipPlanId;
+                //    MemberObj.StartDateTime = DateTime.Now;
+                //    MemberObj.Status = SD.ActiveMember;
+                //    if (MemPlanObj.HasLimitedDuration)
+                //    {
+                //        MemberObj.ExpireDateTime = MemberObj.StartDateTime.AddDays(MemPlanObj.Period);
+                //    }
+                //    await _memberRepo.UpdateMember(MemberObj);
+                //}
                
 
                 // Create new payment 

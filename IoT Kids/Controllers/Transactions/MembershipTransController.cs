@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using IoT_Kids.AssistingModels;
 using IoT_Kids.Models.Dtos;
 using IoT_Kids.Repositories.IRepositories.IMembers;
 //using IoT_Kids.Repositories.IRepositories.ISubscriptionPlans;
@@ -11,6 +10,7 @@ using IoT_Kids.Repositories.IRepositories.IMembers;
 using IoT_Kids.Repositories.IRepositories.IMembershipTrans;
 using IoT_Kids.Repositories.IRepositories.IUsers;
 using IoT_Kids.Repositories.IRepositories.Payments;
+using IoT_Kids.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -68,11 +68,11 @@ namespace IoT_Kids.Controllers.Transactions
         /// </summary>
         /// <param name="UserMembership"></param>
         /// <returns></returns>
-        [HttpPost("UpdateUserMembership")]
+        [HttpPost("UserMembershipRenewal")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateUserMembership([FromBody] UserMembershipVM UserMembership)
+        public async Task<IActionResult> UserMembershipRenewal([FromBody] UserMembershipVM UserMembership)
         {
             if (await _userRepo.CheckUserExist(UserMembership.UserId))
             {

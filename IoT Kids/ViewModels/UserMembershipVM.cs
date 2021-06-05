@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IoT_Kids.AssistingModels
+namespace IoT_Kids.ViewModels
 {
     // this class contains props needed to create a membership for first time user
     // the props to create record in the following tables:

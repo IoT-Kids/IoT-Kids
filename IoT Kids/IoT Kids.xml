@@ -203,14 +203,14 @@
             the controller will also handles failed attempts
             </summary>
         </member>
-        <member name="M:IoT_Kids.Controllers.Transactions.MembershipTransController.CreateMembership(IoT_Kids.AssistingModels.UserMembershipVM)">
+        <member name="M:IoT_Kids.Controllers.Transactions.MembershipTransController.CreateMembership(IoT_Kids.ViewModels.UserMembershipVM)">
             <summary>
             Create   Membership for a first time user
             </summary>
             <param name="UserMembership"></param>
             <returns></returns>
         </member>
-        <member name="M:IoT_Kids.Controllers.Transactions.MembershipTransController.UpdateUserMembership(IoT_Kids.AssistingModels.UserMembershipVM)">
+        <member name="M:IoT_Kids.Controllers.Transactions.MembershipTransController.UserMembershipRenewal(IoT_Kids.ViewModels.UserMembershipVM)">
             <summary>
             Update Membership for an existing user
             </summary>
