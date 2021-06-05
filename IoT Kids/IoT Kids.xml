@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IoT Kids</name>
+    </assembly>
+    <members>
+        <member name="M:IoT_Kids.Controllers.CouponController.GetCouponByCode(System.String)">
+            <summary>
+            Get Coupon by code
+            </summary>
+            <param name="Code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.CouponController.GetCouponById(System.Int32)">
+            <summary>
+            Get coupon by id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.CouponController.CheckCouponActive(System.String)">
+            <summary>
+            check if coupon active by ID 
+            </summary>
+            <param name="Code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.CouponController.CheckCouponActiveById(System.Int32)">
+            <summary>
+            check if coupon active by Code 
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.CouponController.GetAllCopons">
+            <summary>
+            Get all coupons
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.CouponController.CreateCoupon(IoT_Kids.Models.Dtos.CouponCreateDto)">
+            <summary>
+            Create new coupon
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.CouponController.UpdateCoupon(System.Int32,IoT_Kids.Models.Dtos.CouponUpdateDto)">
+            <summary>
+            update a coupon
+            </summary>
+            <param name="Id"></param>
+            <param name="CouponDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.CouponController.DeleteCoupon(System.Int32)">
+            <summary>
+            delete a coupon
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.GetMemberByName(System.String)">
+            <summary>
+            Get member(s) by their name(s)
+            </summary>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.GetMemberbyEmail(System.String)">
+            <summary>
+            Get an individual member by email
+            </summary>
+            <param name="Email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.GetMemberbyUserId(System.String)">
+            <summary>
+            Get an individual member by user ID
+            </summary>
+            <param name="UserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.GetMembers">
+            <summary>
+            Get all members
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.GetMemberbyId(System.Int32)">
+            <summary>
+            Get an individual member by member ID
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.CheckMemberHasAccess(System.String)">
+            <summary>
+            check if the user has active membership and have access or not.
+            if true, has access. otherwise the member is not active
+            </summary>
+            <param name="UserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.CreateMember(IoT_Kids.Models.Dtos.MemberCreateDto)">
+            <summary>
+            Create new member
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.UpdateMemberStatus(System.String,System.String)">
+            <summary>
+            Updates the status of a member
+            </summary>
+            <param name="UserId"></param>
+            <param name="Status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.DeleteMember(System.Int32)">
+            <summary>
+            Delete the member found by its own Id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MemberController.DeleteMemberByUserId(System.String)">
+            <summary>
+            Delete the member found by the UserID
+            </summary>
+            <param name="UserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MembershipPlanController.GetPlanByName(System.String)">
+            <summary>
+            Get an individual membership by plan name
+            </summary>
+            <param name="PlanName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MembershipPlanController.GetPlanbyId(System.Int32)">
+            <summary>
+            Get an individual membership plan by Id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+            [HttpGet("{Id}", Name = "GetUserbyId")]
+        </member>
+        <member name="M:IoT_Kids.Controllers.MembershipPlanController.GetPlans">
+            <summary>
+            Get all Membership plans
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.MembershipPlanController.CreatePlan(IoT_Kids.Models.Dtos.MembershipPlanCreateDto)">
+            <summary>
+            Create new plan
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.PaymentController.GetPaymentById(System.Int32)">
+            <summary>
+            Get payment by Id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.PaymentController.GetUserPayments(System.String)">
+            <summary>
+            Get user's payments (previous payments)
+            </summary>
+            <param name="UserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.PaymentController.GetAllPayments">
+            <summary>
+            Get all payments
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.PaymentController.SearchPayments(IoT_Kids.AssistingModels.SearchParamVM)">
+            <summary>
+            This API does not work with Swagger. search payment based on userId from and to date
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.PaymentController.UpdatePaymentStatus(System.Int32,System.String)">
+            <summary>
+            Update a Payment's status
+            </summary>
+            <param name="Id"></param>
+            <param name="Status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.PaymentController.DeletePayment(System.Int32)">
+            <summary>
+            delete a payment
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IoT_Kids.Controllers.Transactions.MembershipTransController">
+            <summary>
+            this controller handles user membership, either new user or existing member
+            the controller will also handles failed attempts
+            </summary>
+        </member>
+        <member name="M:IoT_Kids.Controllers.Transactions.MembershipTransController.CreateMembership(IoT_Kids.AssistingModels.UserMembershipVM)">
+            <summary>
+            Create   Membership for a first time user
+            </summary>
+            <param name="UserMembership"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.Transactions.MembershipTransController.UpdateUserMembership(IoT_Kids.AssistingModels.UserMembershipVM)">
+            <summary>
+            Update Membership for an existing user
+            </summary>
+            <param name="UserMembership"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.UserController.GetUserByEmail(System.String)">
+            <summary>
+            Get an individual user by email
+            </summary>
+            <param name="Email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.UserController.GetUserbyId(System.String)">
+            <summary>
+            Get an individual user by Id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+            [HttpGet("{Id}", Name = "GetUserbyId")]
+        </member>
+        <member name="M:IoT_Kids.Controllers.UserController.GetUsers">
+            <summary>
+            Get all users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.UserController.RegisterUser(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            This function registers first time users
+            </summary>
+            <param name="FullName"></param>
+            <param name="Email"></param>
+            <param name="Phone"></param>
+            <param name="Address"></param>
+            <param name="Password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.UserController.SetUserDeleted(System.String)">
+            <summary>
+            Set user as deleted. No user will be actually deleted here
+            </summary>
+            <param name="UserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.UserController.SetUserUnDeleted(System.String)">
+            <summary>
+            Change user deleted to undeleted 
+            </summary>
+            <param name="UserId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.UserController.ResetPassword(System.String,System.String)">
+            <summary>
+            to change users password
+            </summary>
+            <param name="UserId"></param>
+            <param name="NewPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.UserController.GetDeletedUsers">
+            <summary>
+            Get all Deleted users
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
