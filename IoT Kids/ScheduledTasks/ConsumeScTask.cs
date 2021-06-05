@@ -14,6 +14,7 @@ namespace IoT_Kids.ScheduledTasks
     {
        // private readonly ILogger<ConsumeScTask> _logger;
       // private readonly IMemberRepo _member;
+      
 
         public ConsumeScTask(IServiceProvider services,
             ILogger<ConsumeScTask> logger)
