@@ -210,7 +210,7 @@
             <param name="UserMembership"></param>
             <returns></returns>
         </member>
-        <member name="M:IoT_Kids.Controllers.Transactions.MembershipTransController.UserMembershipRenewal(IoT_Kids.ViewModels.UserMembershipVM)">
+        <member name="M:IoT_Kids.Controllers.Transactions.MembershipTransController.RenewUserMembership(IoT_Kids.ViewModels.UpdateUserMembershipVM)">
             <summary>
             Update Membership for an existing user
             </summary>

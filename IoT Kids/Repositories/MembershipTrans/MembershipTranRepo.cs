@@ -130,7 +130,7 @@ namespace IoT_Kids.Repositories.MembershipTrans
         }
 
 
-        public async Task<bool> UpdateUserMembership(UserMembershipVM UserMember)
+        public async Task<bool> RenewUserMembership(UpdateUserMembershipVM UserMember)
         {
             // Start Transaction to create new member (if does not exsist) or 
             //update current member and a membership
@@ -150,6 +150,9 @@ namespace IoT_Kids.Repositories.MembershipTrans
                 {
                     return false;
                 }
+
+                MemberObj.Status = SD.ActiveMember;
+
 
                 // Get user obj
                 //var UserObj = await _userRepo.GetUserbyId(UserMember.UserId);

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IoT_Kids.AssistingModels
+namespace IoT_Kids.ViewModels
 {
     //this class should update user  membership status
     // will update Member table (update the status and planId and start and expiry dates)

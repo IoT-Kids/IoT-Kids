@@ -9,6 +9,6 @@ namespace IoT_Kids.Repositories.IRepositories.IMembershipTrans
     public interface IMembershipTranRepo
     {
         Task<bool> CreateUserMembership(UserMembershipVM UserMembership);
-        Task<bool> UpdateUserMembership(UserMembershipVM UserMembership);
+        Task<bool> RenewUserMembership(UpdateUserMembershipVM UserMembership);
     }
 }

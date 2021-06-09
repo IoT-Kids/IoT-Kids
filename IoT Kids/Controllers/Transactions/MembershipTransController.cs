@@ -68,25 +68,22 @@ namespace IoT_Kids.Controllers.Transactions
         /// </summary>
         /// <param name="UserMembership"></param>
         /// <returns></returns>
-        [HttpPost("UserMembershipRenewal")]
+        [HttpPost("RenewUserMembership")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UserMembershipRenewal([FromBody] UserMembershipVM UserMembership)
+        public async Task<IActionResult> RenewUserMembership([FromBody] UpdateUserMembershipVM UserMembership)
         {
             if (await _userRepo.CheckUserExist(UserMembership.UserId))
             {
                 return BadRequest("The user does not exist");
             }
 
-            if (! await _MembershipTransRepo.UpdateUserMembership(UserMembership))
+            if (! await _MembershipTransRepo.RenewUserMembership(UserMembership))
             {
                 return BadRequest();
             }
-
-            var UserObj = _userRepo.GetUserbyId(UserMembership.UserId);
-            var UserDto = _mapper.Map<AppUserDto>(UserObj);
-            return Ok(UserDto);
+            return Ok();
         }
 
 
