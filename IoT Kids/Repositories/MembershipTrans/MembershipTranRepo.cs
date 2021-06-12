@@ -1,10 +1,12 @@
 ﻿using IoT_Kids.Data;
 using IoT_Kids.Models;
+using IoT_Kids.Models.Memberships;
+using IoT_Kids.Models.Payments;
 using IoT_Kids.Repositories.IRepositories.IMembers;
 using IoT_Kids.Repositories.IRepositories.IMembershipPlans;
 using IoT_Kids.Repositories.IRepositories.IMembershipTrans;
 using IoT_Kids.Repositories.IRepositories.IUsers;
-using IoT_Kids.Repositories.IRepositories.Payments;
+using IoT_Kids.Repositories.IRepositories.IPayments;
 using IoT_Kids.StaticDetails;
 using IoT_Kids.ViewModels;
 using System;

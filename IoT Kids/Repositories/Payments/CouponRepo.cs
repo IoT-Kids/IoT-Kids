@@ -1,6 +1,7 @@
 ﻿using IoT_Kids.Data;
 using IoT_Kids.Models;
-using IoT_Kids.Repositories.IRepositories.Payments;
+using IoT_Kids.Models.Payments;
+using IoT_Kids.Repositories.IRepositories.IPayments;
 using IoT_Kids.StaticDetails;
 using Microsoft.EntityFrameworkCore;
 using System;

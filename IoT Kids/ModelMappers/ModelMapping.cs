@@ -1,10 +1,17 @@
 ﻿using AutoMapper;
 using IoT_Kids.Models;
-using IoT_Kids.Models.Dtos;
+using IoT_Kids.Models.Users.Dtos;
+using IoT_Kids.Models.Memberships;
+using IoT_Kids.Models.Memberships.Dtos;
+using IoT_Kids.Models.Payments;
+using IoT_Kids.Models.Payments.Dtos;
+using IoT_Kids.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IoT_Kids.Models.LMS;
+using IoT_Kids.Models.LMS.Dtos;
 
 namespace IoT_Kids.ModelMappers
 {
@@ -23,7 +30,9 @@ namespace IoT_Kids.ModelMappers
             CreateMap<Coupon, CouponUpdateDto>().ReverseMap();
             CreateMap<Payment, PaymentDto>().ReverseMap();
             CreateMap<Payment, PaymentCreateDto>().ReverseMap();
-          //  CreateMap<Payment, PaymentUpdateDto>().ReverseMap();
+            CreateMap<Course, CourseDto>().ReverseMap();
+            CreateMap<Course, CrUpCourseDto>().ReverseMap();
+            //  CreateMap<Payment, PaymentUpdateDto>().ReverseMap();
         }
     }
 }

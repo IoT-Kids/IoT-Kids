@@ -1,6 +1,6 @@
 ﻿using IoT_Kids.AssistingModels;
 using IoT_Kids.Data;
-using IoT_Kids.Models;
+using IoT_Kids.Models.Memberships;
 using IoT_Kids.Repositories.IRepositories.IMembers;
 using IoT_Kids.StaticDetails;
 using Microsoft.EntityFrameworkCore;

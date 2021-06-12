@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IoT_Kids.Models;
+using IoT_Kids.Models.Memberships;
+using IoT_Kids.Models.Users;
+using IoT_Kids.Models.Payments;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using IoT_Kids.Models.LMS;
 
 namespace IoT_Kids.Data
 {
@@ -21,6 +24,10 @@ namespace IoT_Kids.Data
         public DbSet<UserMembershipLog> UserMembershipLog { get; set; }
         public DbSet<Payment> Payment { get; set; }
         public DbSet<Coupon> Coupon { get; set; }
+        public DbSet<Course> Course { get; set; }
+        public DbSet<Lesson> Lesson { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

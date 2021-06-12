@@ -1,5 +1,5 @@
 ﻿using IoT_Kids.Data;
-using IoT_Kids.Models;
+using IoT_Kids.Models.Users;
 using IoT_Kids.Repositories.IRepositories.IUsers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

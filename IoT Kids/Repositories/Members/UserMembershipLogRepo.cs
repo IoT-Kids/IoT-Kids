@@ -1,5 +1,5 @@
 ﻿using IoT_Kids.Data;
-using IoT_Kids.Models;
+using IoT_Kids.Models.Memberships;
 using IoT_Kids.Repositories.IRepositories.IMembers;
 using Microsoft.EntityFrameworkCore;
 using System;

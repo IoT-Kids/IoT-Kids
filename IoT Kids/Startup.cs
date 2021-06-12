@@ -9,7 +9,7 @@ using IoT_Kids.Repositories.IRepositories;
 using IoT_Kids.Repositories.IRepositories.IMembers;
 using IoT_Kids.Repositories.IRepositories.IMembershipPlans;
 using IoT_Kids.Repositories.IRepositories.IUsers;
-using IoT_Kids.Repositories.IRepositories.Payments;
+using IoT_Kids.Repositories.IRepositories.IPayments;
 using IoT_Kids.Repositories.Members;
 using IoT_Kids.Repositories.Payments;
 using IoT_Kids.Repositories.MembershipPlans;
@@ -25,6 +25,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using IoT_Kids.Repositories.IRepositories.IMembershipTrans;
+using IoT_Kids.Repositories.IRepositories.LMS;
+using IoT_Kids.Repositories.LMS;
 
 namespace IoT_Kids
 {
@@ -47,6 +49,8 @@ namespace IoT_Kids
             services.AddScoped<IPaymentRepo, PaymentRepo>();
             services.AddScoped<IMembershipTranRepo, MembershipTranRepo>();
             services.AddScoped<IUserMembershipLogRepo, UserMembershipLogRepo>();
+            services.AddScoped<ICourseRepo, CourseRepo>();
+
             services.AddAutoMapper(typeof(ModelMapping));
             services.AddHostedService<SetExpiredMemberStatus>();
             services.AddScoped<IScTask, ScTask>();

@@ -1,5 +1,5 @@
 ﻿using IoT_Kids.AssistingModels;
-using IoT_Kids.Models;
+using IoT_Kids.Models.Memberships;
 using System;
 using System.Collections.Generic;
 using System.Linq;
