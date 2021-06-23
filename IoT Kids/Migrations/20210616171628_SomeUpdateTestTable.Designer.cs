@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IoT_Kids.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210609190605_CourseLessonTables")]
-    partial class CourseLessonTables
+    [Migration("20210616171628_SomeUpdateTestTable")]
+    partial class SomeUpdateTestTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,11 +28,17 @@ namespace IoT_Kids.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
 
                     b.Property<string>("Lang")
                         .IsRequired()
@@ -51,6 +57,7 @@ namespace IoT_Kids.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -74,6 +81,9 @@ namespace IoT_Kids.Migrations
 
                     b.Property<int>("CourseID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -100,6 +110,7 @@ namespace IoT_Kids.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -114,6 +125,59 @@ namespace IoT_Kids.Migrations
                     b.HasIndex("CourseID");
 
                     b.ToTable("Lesson");
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.LMS.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PassingPercent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref01")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref02")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ref03")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Refo4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("LessonId");
+
+                    b.ToTable("Test");
                 });
 
             modelBuilder.Entity("IoT_Kids.Models.Memberships.Member", b =>
@@ -628,6 +692,19 @@ namespace IoT_Kids.Migrations
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.LMS.Test", b =>
+                {
+                    b.HasOne("IoT_Kids.Models.LMS.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IoT_Kids.Models.LMS.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId");
                 });
 
             modelBuilder.Entity("IoT_Kids.Models.Memberships.Member", b =>

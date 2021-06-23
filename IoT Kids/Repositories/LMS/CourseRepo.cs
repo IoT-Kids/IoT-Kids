@@ -1,6 +1,7 @@
 ﻿using IoT_Kids.Data;
 using IoT_Kids.Models.LMS;
 using IoT_Kids.Repositories.IRepositories.LMS;
+using IoT_Kids.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -41,11 +42,11 @@ namespace IoT_Kids.Repositories.LMS
             return CourseObj;
         }
 
-        public async Task<Course> GetCourseByTitle(string Title)
+        public async Task<ICollection<Course>> GetCourseByTitle(string Title)
         {
-            var CourseObj = await _db.Course.SingleOrDefaultAsync(p => p.Title == Title);
+            var CourseList = await _db.Course.Where(p => p.Title.Contains(Title.ToLower().ToString())).ToListAsync();
 
-            return CourseObj;
+            return CourseList;
         }
 
         public async Task<bool> UpdateCourse(Course Course)
@@ -58,7 +59,7 @@ namespace IoT_Kids.Repositories.LMS
 
         public async Task<bool> UpdateCourseStatus(int CourseId, string status)
         {
-            var CourseObj =  _db.Course.SingleOrDefault(p => p.Id == CourseId);
+            var CourseObj = _db.Course.SingleOrDefault(p => p.Id == CourseId);
             CourseObj.Status = status;
             return await Save();
         }
@@ -69,8 +70,40 @@ namespace IoT_Kids.Repositories.LMS
 
         public async Task<ICollection<Course>> GetAllCourses()
         {
-            var CourseList = await _db.Course.OrderBy(p => p.Order).ToListAsync();
+            var CourseList = await _db.Course.OrderBy(p => p.Index).ToListAsync();
             return CourseList;
         }
+
+        public Task<ICollection<Course>> GetAllCoursesWithLessons()
+        {
+            throw new NotImplementedException();
+        }
+
+    ////    public async Task<ICollection<CourseLessonVM>> GetCourseWithLessonsById(int Id)
+    //    {
+    //        var CourseObj = await (from co in _db.Course
+    //                               join le in _db.Lesson on co.Id equals le.CourseID
+    //                               where co.Id.Equals(Id)
+    //                               select new CourseLessonVM
+    //                               {
+    //                                   CourseId = co.Id,
+    //                                   CourseTitle = co.Title,
+    //                                   CourseDescription = co.Description, 
+    //                                   Image = co.Image,
+    //                                   Lang = co.Lang,
+    //                                   Status = co.Status,
+    //                                   Index = co.Index, 
+    //                                   CreatedDateTime = co.CreatedDateTime.ToString("dd/MM/yyyy"),
+    //                                   LessonId = le.Id, 
+    //                                   LessonDescription = le.Description,
+    //                                   LessonIndex = le.Index, 
+    //                                   Content = le.Content,
+    //                                   VideoURL = le.VideoURL, 
+    //                                   SampleVideo = le.SampleVideo,
+    //                                   HasTest = le.HasTest,
+
+    //                               }).ToListAsync();
+    //                            return CourseObj;
+    //    }
     }
 }

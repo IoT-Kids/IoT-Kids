@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IoT_Kids.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210531192407_newdb03")]
-    partial class newdb03
+    [Migration("20210616165002_AddIndexToTestTable")]
+    partial class AddIndexToTestTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,16 +21,12 @@ namespace IoT_Kids.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("IoT_Kids.Models.Coupon", b =>
+            modelBuilder.Entity("IoT_Kids.Models.LMS.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime2");
@@ -38,34 +34,149 @@ namespace IoT_Kids.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("DiscountAmt")
-                        .HasColumnType("float");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
-                    b.Property<DateTime?>("ExpiryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Ref01")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ref02")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Ref03")
+                    b.Property<int>("Index")
                         .HasColumnType("int");
 
-                    b.Property<int>("Ref04")
+                    b.Property<string>("Lang")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ref01")
                         .HasColumnType("int");
+
+                    b.Property<int>("Ref02")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ref03")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Refo4")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Coupon");
+                    b.ToTable("Course");
                 });
 
-            modelBuilder.Entity("IoT_Kids.Models.Member", b =>
+            modelBuilder.Entity("IoT_Kids.Models.LMS.Lesson", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CourseID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasTest")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref01")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref02")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ref03")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Refo4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("SampleVideo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoURL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseID");
+
+                    b.ToTable("Lesson");
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.LMS.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref01")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref02")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ref03")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Refo4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Test");
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.Memberships.Member", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +224,7 @@ namespace IoT_Kids.Migrations
                     b.ToTable("Member");
                 });
 
-            modelBuilder.Entity("IoT_Kids.Models.MembershipPlan", b =>
+            modelBuilder.Entity("IoT_Kids.Models.Memberships.MembershipPlan", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,7 +280,99 @@ namespace IoT_Kids.Migrations
                     b.ToTable("MembershipPlan");
                 });
 
-            modelBuilder.Entity("IoT_Kids.Models.Payment", b =>
+            modelBuilder.Entity("IoT_Kids.Models.Memberships.UserMembershipLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("ExpireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("MembershipPlanId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PaymentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ref01")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ref02")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ref03")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref04")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MembershipPlanId");
+
+                    b.HasIndex("PaymentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserMembershipLog");
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.Payments.Coupon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("DiscountAmt")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Ref01")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ref02")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ref03")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref04")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coupon");
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.Payments.Payment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -241,54 +444,6 @@ namespace IoT_Kids.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Payment");
-                });
-
-            modelBuilder.Entity("IoT_Kids.Models.UserMembershipLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("MembershipPlanId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PaymentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Ref01")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ref02")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Ref03")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Ref04")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MembershipPlanId");
-
-                    b.HasIndex("PaymentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserMembershipLog");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -497,7 +652,7 @@ namespace IoT_Kids.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("IoT_Kids.Models.AppUser", b =>
+            modelBuilder.Entity("IoT_Kids.Models.Users.AppUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -526,53 +681,71 @@ namespace IoT_Kids.Migrations
                     b.HasDiscriminator().HasValue("AppUser");
                 });
 
-            modelBuilder.Entity("IoT_Kids.Models.Member", b =>
+            modelBuilder.Entity("IoT_Kids.Models.LMS.Lesson", b =>
                 {
-                    b.HasOne("IoT_Kids.Models.MembershipPlan", "MembershipPlan")
+                    b.HasOne("IoT_Kids.Models.LMS.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.LMS.Test", b =>
+                {
+                    b.HasOne("IoT_Kids.Models.LMS.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.Memberships.Member", b =>
+                {
+                    b.HasOne("IoT_Kids.Models.Memberships.MembershipPlan", "MembershipPlan")
                         .WithMany()
                         .HasForeignKey("MembershipPlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IoT_Kids.Models.AppUser", "AppUser")
+                    b.HasOne("IoT_Kids.Models.Users.AppUser", "AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("IoT_Kids.Models.Payment", b =>
+            modelBuilder.Entity("IoT_Kids.Models.Memberships.UserMembershipLog", b =>
                 {
-                    b.HasOne("IoT_Kids.Models.Coupon", "Coupon")
-                        .WithMany()
-                        .HasForeignKey("CouponId");
-
-                    b.HasOne("IoT_Kids.Models.MembershipPlan", "MembershipPlan")
-                        .WithMany()
-                        .HasForeignKey("MembershipPlanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IoT_Kids.Models.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("IoT_Kids.Models.UserMembershipLog", b =>
-                {
-                    b.HasOne("IoT_Kids.Models.MembershipPlan", "MembershipPlan")
+                    b.HasOne("IoT_Kids.Models.Memberships.MembershipPlan", "MembershipPlan")
                         .WithMany()
                         .HasForeignKey("MembershipPlanId");
 
-                    b.HasOne("IoT_Kids.Models.Payment", "Payment")
+                    b.HasOne("IoT_Kids.Models.Payments.Payment", "Payment")
                         .WithMany()
                         .HasForeignKey("PaymentId");
 
-                    b.HasOne("IoT_Kids.Models.AppUser", "AppUser")
+                    b.HasOne("IoT_Kids.Models.Users.AppUser", "AppUser")
                         .WithMany()
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.Payments.Payment", b =>
+                {
+                    b.HasOne("IoT_Kids.Models.Payments.Coupon", "Coupon")
+                        .WithMany()
+                        .HasForeignKey("CouponId");
+
+                    b.HasOne("IoT_Kids.Models.Memberships.MembershipPlan", "MembershipPlan")
+                        .WithMany()
+                        .HasForeignKey("MembershipPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IoT_Kids.Models.Users.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

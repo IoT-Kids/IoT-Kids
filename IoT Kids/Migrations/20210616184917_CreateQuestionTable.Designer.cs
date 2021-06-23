@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IoT_Kids.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210609195309_updateLMSTabls")]
-    partial class updateLMSTabls
+    [Migration("20210616184917_CreateQuestionTable")]
+    partial class CreateQuestionTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,12 +37,12 @@ namespace IoT_Kids.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
                     b.Property<string>("Lang")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
 
                     b.Property<int>("Ref01")
                         .HasColumnType("int");
@@ -57,6 +57,7 @@ namespace IoT_Kids.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -109,6 +110,7 @@ namespace IoT_Kids.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -123,6 +125,101 @@ namespace IoT_Kids.Migrations
                     b.HasIndex("CourseID");
 
                     b.ToTable("Lesson");
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.LMS.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PassingPercent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref01")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref02")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ref03")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Refo4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("LessonId");
+
+                    b.ToTable("Test");
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.LMS.TestQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Index")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Ref01")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Ref02")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ref03")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Refo4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TestId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestId");
+
+                    b.ToTable("TestQuestion");
                 });
 
             modelBuilder.Entity("IoT_Kids.Models.Memberships.Member", b =>
@@ -635,6 +732,28 @@ namespace IoT_Kids.Migrations
                     b.HasOne("IoT_Kids.Models.LMS.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.LMS.Test", b =>
+                {
+                    b.HasOne("IoT_Kids.Models.LMS.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IoT_Kids.Models.LMS.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId");
+                });
+
+            modelBuilder.Entity("IoT_Kids.Models.LMS.TestQuestion", b =>
+                {
+                    b.HasOne("IoT_Kids.Models.LMS.Test", "Test")
+                        .WithMany()
+                        .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -26,6 +26,10 @@ namespace IoT_Kids.Data
         public DbSet<Coupon> Coupon { get; set; }
         public DbSet<Course> Course { get; set; }
         public DbSet<Lesson> Lesson { get; set; }
+        public DbSet<Test> Test { get; set; }
+        public DbSet<TestQuestion> TestQuestion { get; set; }
+        public DbSet<QuestionChoice> QuestionChoice { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)

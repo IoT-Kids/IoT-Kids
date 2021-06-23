@@ -53,6 +53,194 @@
             <param name="Id"></param>
             <returns></returns>
         </member>
+        <member name="M:IoT_Kids.Controllers.LMS.LessonController.GetLessonByTitle(System.String)">
+            <summary>
+            Get Lesson by title
+            </summary>
+            <param name="Title"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.LessonController.GetCourseLessons(System.Int32)">
+            <summary>
+            Get  Lessons of a course
+            </summary>
+            <param name="CourseId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.LessonController.GetLessonById(System.Int32)">
+            <summary>
+            Get Lesson by id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.LessonController.GetAllLessons">
+            <summary>
+            Get all Lessons
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.LessonController.CreateLesson(IoT_Kids.Models.LMS.Dtos.CrUpLessonDto)">
+            <summary>
+            Create new Lesson
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.LessonController.UpdateLesson(System.Int32,IoT_Kids.Models.LMS.Dtos.CrUpLessonDto)">
+            <summary>
+            update a Lesson
+            </summary>
+            <param name="Id"></param>
+            <param name="LessonDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.LessonController.UpdateLessonStatus(System.Int32,System.String)">
+            <summary>
+            Updates the status of the Lesson
+            </summary>
+            <param name="Id"></param>
+            <param name="Status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.LessonController.DeleteLesson(System.Int32)">
+            <summary>
+            delete a Lesson
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.QuestionChoiceController.GetQuestionChoices(System.Int32)">
+            <summary>
+            Get  choices of a question
+            </summary>
+            <param name="QuestionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.QuestionChoiceController.GetChoiceById(System.Int32)">
+            <summary>
+            Get Choice by id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.QuestionChoiceController.CreateChoice(IoT_Kids.Models.LMS.Dtos.CrUpQuestionChoiceDto)">
+            <summary>
+            Create new choice
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.QuestionChoiceController.UpdateQuestion(System.Int32,IoT_Kids.Models.LMS.Dtos.CrUpQuestionChoiceDto)">
+            <summary>
+            update a choice
+            </summary>
+            <param name="Id"></param>
+            <param name="ChoiceDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.QuestionChoiceController.DeleteChoice(System.Int32)">
+            <summary>
+            delete a choice
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestController.GetTestByTitle(System.String)">
+            <summary>
+            Get Test by title
+            </summary>
+            <param name="Title"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestController.GetCourseTests(System.Int32)">
+            <summary>
+            Get  Tests of a course
+            </summary>
+            <param name="CourseId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestController.GetTestById(System.Int32)">
+            <summary>
+            Get Test by id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestController.GetAllTests">
+            <summary>
+            Get all Tests
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestController.CreateTest(IoT_Kids.Models.LMS.Dtos.CrUpTestDto)">
+            <summary>
+            Create new Test
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestController.UpdateTest(System.Int32,IoT_Kids.Models.LMS.Dtos.CrUpTestDto)">
+            <summary>
+            update a Test
+            </summary>
+            <param name="Id"></param>
+            <param name="TestDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestController.UpdateTestStatus(System.Int32,System.String)">
+            <summary>
+            Updates the status of the Test
+            </summary>
+            <param name="Id"></param>
+            <param name="Status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestController.DeleteTest(System.Int32)">
+            <summary>
+            delete a Test
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestQuestionController.GetTestQuestions(System.Int32)">
+            <summary>
+            Get  Questions of a test
+            </summary>
+            <param name="TestId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestQuestionController.GetQuestionById(System.Int32)">
+            <summary>
+            Get Question by id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestQuestionController.GetAllQuestions">
+            <summary>
+            Get all Questions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestQuestionController.CreateQuestion(IoT_Kids.Models.LMS.Dtos.CrUpTestQuestionDto)">
+            <summary>
+            Create new Question
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestQuestionController.UpdateQuestion(System.Int32,IoT_Kids.Models.LMS.Dtos.CrUpTestQuestionDto)">
+            <summary>
+            update a Question
+            </summary>
+            <param name="Id"></param>
+            <param name="TestQuestionDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IoT_Kids.Controllers.LMS.TestQuestionController.DeleteQuestion(System.Int32)">
+            <summary>
+            delete a Question
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
         <member name="M:IoT_Kids.Controllers.Memberships.MemberController.GetMemberByName(System.String)">
             <summary>
             Get member(s) by their name(s)

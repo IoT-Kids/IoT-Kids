@@ -50,6 +50,10 @@ namespace IoT_Kids
             services.AddScoped<IMembershipTranRepo, MembershipTranRepo>();
             services.AddScoped<IUserMembershipLogRepo, UserMembershipLogRepo>();
             services.AddScoped<ICourseRepo, CourseRepo>();
+            services.AddScoped<ILessonRepo, LessonRepo>();
+            services.AddScoped<ITestRepo, TestRepo>();
+            services.AddScoped<ITestQuestionRepo, TestQuestionRepo>();
+            services.AddScoped<IQuestionChoiceRepo, QuestionChoiceRepo>();
 
             services.AddAutoMapper(typeof(ModelMapping));
             services.AddHostedService<SetExpiredMemberStatus>();

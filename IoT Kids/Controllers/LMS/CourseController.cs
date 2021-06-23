@@ -15,12 +15,12 @@ namespace IoT_Kids.Controllers.LMS
     [ApiController]
     public class CourseController : ControllerBase
     {
-        private readonly ICourseRepo _CourseRepo;
+        private readonly ICourseRepo _courseRepo;
         private readonly IMapper _mapper;
 
         public CourseController(ICourseRepo CourseRepo, IMapper mapper)
         {
-            _CourseRepo = CourseRepo;
+            _courseRepo = CourseRepo;
             _mapper = mapper;
         }
 
@@ -34,14 +34,19 @@ namespace IoT_Kids.Controllers.LMS
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCourseByTitle(string Title)
         {
-            var CourseObj = await _CourseRepo.GetCourseByTitle(Title);
+            var CourseList = await _courseRepo.GetCourseByTitle(Title);
 
-            if (CourseObj == null)
+            var CourseDtoList = new List<CourseDto>();
+
+            // Converting to Dto list
+            foreach (var obj in CourseList)
             {
-                return NotFound();
+                CourseDtoList.Add(_mapper.Map<CourseDto>(obj));
             }
-            var CourseObjDto = _mapper.Map<CourseDto>(CourseObj);
-            return Ok(CourseObjDto);
+
+            return Ok(CourseDtoList);
+
+    
         }
 
         /// <summary>
@@ -54,14 +59,14 @@ namespace IoT_Kids.Controllers.LMS
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCourseById(int Id)
         {
-            var CourseObj = await _CourseRepo.GetCourseById(Id);
+            var CourseObj = await _courseRepo.GetCourseById(Id);
 
             if (CourseObj == null)
             {
                 return NotFound();
             }
-            var CouponObjDto = _mapper.Map<CourseDto>(CourseObj);
-            return Ok(CouponObjDto);
+            var CourseObjDto = _mapper.Map<CourseDto>(CourseObj);
+            return Ok(CourseObjDto);
         }
 
         /// <summary>
@@ -72,7 +77,7 @@ namespace IoT_Kids.Controllers.LMS
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllCourses()
         {
-            var CourseList = await _CourseRepo.GetAllCourses();
+            var CourseList = await _courseRepo.GetAllCourses();
 
             var CourseDtoList = new List<CourseDto>();
 
@@ -99,7 +104,7 @@ namespace IoT_Kids.Controllers.LMS
        
             var CourseObj = _mapper.Map<Course>(CourseDto);
             CourseObj.CreatedDateTime = DateTime.Now;
-            if (!await _CourseRepo.CreateCourse(CourseObj))
+            if (!await _courseRepo.CreateCourse(CourseObj))
             {
                 return StatusCode(404);
             }
@@ -127,7 +132,7 @@ namespace IoT_Kids.Controllers.LMS
 
             var CourseObj = _mapper.Map<Course>(CourseDto);
             CourseObj.Id = Id;
-            if (!await _CourseRepo.UpdateCourse(CourseObj))
+            if (!await _courseRepo.UpdateCourse(CourseObj))
             {
                 ModelState.AddModelError("", $"Something went wrong while updating the course");
                 return StatusCode(500, ModelState);
@@ -147,7 +152,7 @@ namespace IoT_Kids.Controllers.LMS
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateCourseStatus(int Id, string Status)
         {
-            if (!await _CourseRepo.UpdateCourseStatus(Id, Status))
+            if (!await _courseRepo.UpdateCourseStatus(Id, Status))
             {
                 return BadRequest();
             }
@@ -164,16 +169,16 @@ namespace IoT_Kids.Controllers.LMS
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteCourse(int Id)
         {
-            var CourseObj = await _CourseRepo.GetCourseById(Id);
+            var CourseObj = await _courseRepo.GetCourseById(Id);
 
             if (CourseObj == null)
             {
                 return NotFound();
             }
 
-            if (!await _CourseRepo.DeleteCourse(Id))
+            if (!await _courseRepo.DeleteCourse(Id))
             {
-                ModelState.AddModelError("", $"Something went wrong while Deleting the coupon");
+                ModelState.AddModelError("", $"Something went wrong while Deleting the Course");
                 return StatusCode(500, ModelState);
             }
             return Ok();
